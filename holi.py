@@ -59,15 +59,17 @@ for i in range (filas):
 matriz = definir_matriz(cadena=a, matriz=matriz)
 imprimir_matriz(matriz)
 
+
+
 # Imprimimos el menu
 imprimir_menu()
 
 opcion=int(input("Respuesta -> "))
 
 if opcion==1:
-  matriz = presentar_central(matriz)
+  central = presentar_central(matriz)
+  print(central)
  
-
 if opcion==2:
   pass
 if opcion==3:
