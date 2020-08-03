@@ -1,7 +1,7 @@
-def definir_matriz(cadena,matriz):
+def definir_matriz(cadena, matriz):
   cont = 0 #rastrear los indeces que se han ingresado en la lista
-  lista=cadena.split(",")
-  print(lista)
+  lista = cadena.split(",")
+
   if len(lista) == (len(matriz)*len(matriz[0])):
     for i in range(len(matriz)):
       #se llena desde la ultima fila hasta la primera 
@@ -14,28 +14,30 @@ def definir_matriz(cadena,matriz):
 
 
 def presentar_central(matriz):
-  #se guarda los numeros de la diagonal princial en un array
-  diagonalprin = []
- for i in range(0,filas):
-  diagonalprin.append(matriz[i][i])
+  indice_central = len(matriz)//2
+  central = matriz[indice_central][indice_central]
+  return central
 
-  #se guarda los numeros de la diagonal secundaria en un array
-  diagonalsecu = []
- for i in range(0,columnas):
-  diagonalsecu.append(matriz[i][(columnas-1)-i])
+def imprimir_matriz(matriz):
+  """
+  Imprime una matriz de manera ordenada
+  """
+  for i in matriz:
+    print(i)
 
-  #se encuentra el nuemero interseccion entreo los dos, osea el nro repetido el cual sera el centra
-  a=diagonalprin[0]
- for i in range(0,len(diagonalsecu)):
-  if diagonalsecu==a:
-    a=diagonalsecu[i]
-  b = diagonalprin.count(a)
-  return diagonalprin[b]
+def imprimir_menu():
+  """
+  Esta funcion imprime el menu
+  """
+  print("Que desea realizar en la matriz")
+  print("1. Presentar el nro Central ")
+  print("2. Presentar los nros en forma espiral desde el centro ")
+  print("3. Multiplos del nro central")
 
 
 print('Proyecto Final PYTHON')
 
-n=int(input('Ingrese el tamaño: '))
+n=int(input('Ingrese el tamano: '))
 while(n%2==0) or n<3:
   print('Numero invalido')  
 
@@ -46,31 +48,30 @@ filas=n
 columnas=n
 matriz = [] 
 
-a=input('Ingrese los valores separados por comas: ')
-
+a = str(input('Ingrese los valores separados por comas: '))
+a = a.replace("(", "")
+a = a.replace(")", "")
 for i in range (filas): 
   matriz.append([])
   for j in range (columnas):
     matriz[i].append(0)
 
-matriz = definir_matriz(a,matriz)
-print(matriz)
+matriz = definir_matriz(cadena=a, matriz=matriz)
+imprimir_matriz(matriz)
 
-print('Que desea realizar en la matriz')
-opcion=int(input('1. Presentar el nro Central '))
-opcion=int(input('2. Presentar los nros en forma espiral desde el centro '))
-opcion=int(input('3. Multiplos del nro central'))
+# Imprimimos el menu
+imprimir_menu()
+
+opcion=int(input("Respuesta -> "))
 
 if opcion==1:
   matriz = presentar_central(matriz)
-  print (matriz)
+ 
 
 if opcion==2:
-
+  pass
 if opcion==3:
-
-
-
+  pass
 
 
 
