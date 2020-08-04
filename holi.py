@@ -34,6 +34,87 @@ def imprimir_menu():
   print("2. Presentar los nros en forma espiral desde el centro ")
   print("3. Multiplos del nro central")
 
+def espiral(matriz):
+  """
+  Recorre la matriz en forma espiral desde el centro y retorna todos esos valores en una lista
+  """
+  result = []  # Lista resultado
+
+  indice_central = indice_central = len(matriz) // 2
+  
+  # Coordenadas
+  x = indice_central
+  y = indice_central
+
+  pasos = 1
+
+  direcciones = ["derecha", "abajo", "izquierda", "arriba"]
+  contador_direccion = 0
+
+
+
+  # Agregamos el numero central ya a la lista antes de empezar
+  result.append(matriz[x][y])
+  print(result)
+  iteraciones = 2 
+
+  for k in range(len(matriz)*len(matriz)):
+
+    for j in range(iteraciones):
+      
+      for i in range(pasos):
+        direccion_actual = direcciones[contador_direccion]
+
+        # Realizando el movimiento    
+        if(direccion_actual == direcciones[0]):
+          # Hacia la derecha
+          x = x
+          y = y + 1 
+      
+          if (len(matriz)) == y: # Verificamos si es que ya nos salimos de la matriz
+            # Por aqui es la unica manera de salir
+            return result
+
+        elif direccion_actual == direcciones[1]:
+          # Hacia abajo
+          x = x + 1
+          y = y 
+
+        elif direccion_actual == direcciones[2]:
+          # Hacia la izquierda
+          x = x 
+          y = y - 1
+
+        elif direccion_actual == direcciones[3]:
+          # Hacia arriba
+          x = x - 1
+          y = y 
+
+        else:
+          # Significa que direccion_actual tiene el valor de 4, y se ha salido de la lista, 
+          #  por lo que debemos asumir que la direccion actual es 0, hacia la derecha
+          contador_direccion = 0
+          # Hacia la derecha
+          x =  x + 1
+          y = y 
+      
+          if (len(matriz)) == y: # Verificamos si es que ya nos salimos de la matriz
+            # Por aqui es la unica manera de salir
+            return result
+
+        result.append(matriz[x][y])
+
+
+      # Actualizamos la direccion actual para la siguiente iteracion
+      contador_direccion = contador_direccion + 1
+      if(contador_direccion == 4):
+        contador_direccion = 0
+
+    # La cantidad de pasos despues de dos iteraciones aumenta en uno
+    pasos += 1
+
+  return None
+
 
 print('Proyecto Final PYTHON')
 
@@ -51,6 +132,7 @@ matriz = []
 a = str(input('Ingrese los valores separados por comas: '))
 a = a.replace("(", "")
 a = a.replace(")", "")
+a = a.replace(" ", "")
 for i in range (filas): 
   matriz.append([])
   for j in range (columnas):
@@ -71,7 +153,10 @@ if opcion==1:
   print(central)
  
 if opcion==2:
-  pass
+  lista_resultado = espiral(matriz)
+  print(lista_resultado)
+
+
 if opcion==3:
   pass
 
